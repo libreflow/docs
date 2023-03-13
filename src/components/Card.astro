@@ -1,0 +1,22 @@
+---
+const { title } = Astro.props;
+---
+
+<div class="px-6 py-4 border rounded-lg border-dark-blue bg-secondary mb-4">
+	<div class="rounded-full p-2.5 bg-violet-200 border border-violet-300 w-[40px] h-[40px] mb-4 [&>svg]:fill-violet-800"><slot name="icon"></slot></div>
+
+	<h4 class="font-semibold tracking-normal text-slate-900 text-xl mb-1">
+		{title}
+	</h4>
+
+	<div class="content">
+		<slot name="description"></slot>
+	</div>
+	
+</div>
+
+<style>
+	.content :global(p, a) {
+		@apply text-slate-500;
+	}
+</style>

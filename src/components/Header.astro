@@ -1,0 +1,19 @@
+---
+import { getCollection } from "astro:content";
+import Config from "../../config.json";
+import Search from "./Search.svelte";
+
+let collection = await getCollection("docs")
+let allPages = collection.map((page) => {
+	return {
+		slug: page.slug.replace(/[0-9\-]+/g, ""),
+		body: page.body,
+		data: page.data
+	}
+})
+---
+
+<header class="sticky top-0 h-[4rem] flex items-center justify-between border-b px-8 z-50 bg-white">
+	<a href="/" class="font-bold text-3xl select-none">{Config.title}</a>
+	<Search list={allPages} client:load></Search>
+</header>

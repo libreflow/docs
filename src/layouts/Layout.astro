@@ -1,0 +1,117 @@
+---
+import Header from '../components/Header.astro';
+import Navigation from '../components/Navigation.astro';
+import ContentNavigation from '../components/ContentNavigation.astro';
+import ContentFooter from '../components/ContentFooter.astro';
+import type { MarkdownHeading } from 'astro';
+
+export interface Props {
+	content: {
+		title: string;
+		section: string;
+		description: string;
+	}
+	headings: MarkdownHeading[]
+}
+
+
+const { content, headings } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <title>{content.title}</title>
+</head>
+<body>
+  <Header />
+
+  <main class="relative flex justify-center mx-auto max-w-8xl sm:px-2 lg:px-8 xl:px-12 bg-primary">
+    <Navigation />
+
+    <div class="flex-auto min-w-0 px-4 py-10 lg:max-w-none lg:pr-0 lg:pl-8 xl:px-16">
+      <article class="max-w-[1200px] mx-auto w-full">
+        <header>
+          <p class="text-base font-medium text-slate-500">
+            {content.section}
+          </p>
+
+          <h1 class="text-3xl font-bold tracking-tight text-slate-900">
+            {content.title}
+          </h1>
+        </header>
+
+        <p class="mt-2 text-xl text-slate-600">
+          {content.description}
+        </p>
+
+        <div class="mt-8 prose prose-slate prose-headings:font-semibold prose-headings:tracking-tight prose-lead:text-slate-500 prose-a:font-semibold prose-a:underline prose-pre:bg-slate-900">
+          <slot />
+        </div>
+
+        <ContentFooter />
+      </article>
+
+      <ContentNavigation />
+    </div>
+  </main>
+</body>
+</html>
+
+<style is:global>
+	pre:has(code) {
+		@apply rounded-lg p-4 my-6;
+		background-color: rgb(240 240 240) !important;
+	}
+
+	article a[href] {
+		@apply text-violet-600 underline inline my-2;
+	}
+
+	article table td, article table th {
+		@apply border-b px-2 py-2 text-left;
+	}
+
+	article table td:not(:last-child), article table th:not(:last-child) {
+		@apply border-r;
+	}
+
+	article table {
+		@apply w-full;
+	}
+
+	article p {
+		@apply text-lg;
+	}
+
+	article ul {
+		@apply list-disc pl-5 my-2;
+	}
+
+	ul > ul {
+		@apply my-0;
+	}
+
+	article ol {
+		@apply list-decimal pl-5 my-2;
+	}
+
+	article ul li, article ol li {
+		@apply text-lg;
+	}
+
+	article h2 {
+		@apply my-6 font-bold text-2xl text-slate-800
+	}
+
+	article h3 {
+		@apply my-4 font-bold text-xl text-slate-800
+	}
+
+	article code {
+		@apply rounded-lg text-base bg-[rgb(240,240,240)] px-2 py-1;
+	}
+</style>

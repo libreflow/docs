@@ -1,16 +1,9 @@
 {
+  "extends": "astro/tsconfigs/strict",
 	"compilerOptions": {
-		"allowSyntheticDefaultImports": true,
-		"declarationDir": "./dist/types/",
-		"declaration": true,
-		"declarationMap": true,
-		"target": "ES5",
-		"module": "ES2022",
-		"moduleDetection": "auto",
-		"outDir": "./dist/",
-		"rootDir": "./src/",
-		"removeComments": true,
-		"moduleResolution": "node"
+		"paths": {
+			"~/components/*": ["src/components/*.astro"]
+		}
 	},
-	"compileOnSave": true
+	"include": ["src/*"]
 }
