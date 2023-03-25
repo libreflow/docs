@@ -1,2 +1,3 @@
-# META Documentation
-This is the official documentation of the META Programming Language.
+# LibreFlow Documentation
+
+This is the official documentation for LibreFlow.
