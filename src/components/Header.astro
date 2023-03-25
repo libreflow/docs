@@ -15,5 +15,7 @@ let allPages = collection.map((page) => {
 
 <header class="sticky top-0 h-[4rem] flex items-center justify-between border-b px-8 z-50 bg-white">
 	<a href="/" class="font-bold text-3xl select-none">{Config.title}</a>
-	<Search list={allPages} client:load></Search>
+	<div class="flex flex-row gap-4 items-center">
+		<Search list={allPages} client:load></Search>
+	</div>
 </header>

@@ -1,28 +1,23 @@
 ---
-import { getCollection } from "astro:content";
-
-const docs = await getCollection("docs")
+const { docs } = Astro.props;
 const sections: Record<string, any[]> = {}
 
-docs.reduce((docs, object) => {
-  const property = object.data.section || "";
+for (const article of docs) {
+	const property = article.data.section || "";
   sections[property] = sections[property] || [];
-
-	object.slug = object.slug.replace(/[0-9\-]+/g, "")
-  sections[property].push(object);
-
-  return docs;
-}, {});
+  sections[property].push(article);
+}
 ---
 
-<label for="navigation" class="bg-white fixed bottom-0 left-0 z-50 flex items-center justify-center w-12 h-12 mb-4 ml-4 bg-secondary border rounded-full shadow-lg cursor-pointer text-slate-600 border-dark-blue lg:hidden transition duration-200 ease-in-out active:scale-95">
+<label for="navigation" class="bg-white fixed bottom-0 right-0 z-50 flex items-center justify-center w-12 h-12 mb-4 mr-4 bg-secondary border rounded-full shadow-lg cursor-pointer text-slate-600 border-dark-blue lg:hidden transition duration-200 ease-in-out active:scale-95">
   <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
     <path stroke-linecap="round" stroke-linejoin="round" d="M4 8h16M4 16h16" />
   </svg>
 </label>
 
 <input type="checkbox" name="navigation" id="navigation" class="hidden peer" />
-<div class="fixed top-[4rem] h-screen px-4 left-0 hidden bg-white border-r peer-checked:block lg:relative lg:top-0 lg:h-auto lg:px-0 lg:block lg:flex-none lg:shadow-none">
+
+<div class="shadow-xl fixed top-[4rem] h-screen px-4 left-0 hidden bg-white border-r peer-checked:block lg:relative lg:top-0 lg:h-auto lg:px-0 lg:block lg:flex-none lg:shadow-none">
   <div class="absolute inset-y-0 right-0 w-full lg:w-[50vw] bg-secondary"></div>
 
   <nav class="sticky top-[4.5rem] w-64 pr-8 text-base lg:text-sm xl:w-72 xl:pr-16">
@@ -34,10 +29,10 @@ docs.reduce((docs, object) => {
               {section[0]}
             </h3>
 
-            <ul role="list" class="pl-3 mt-3 space-y-2">
+            <ul role="list" class="pl-3 mt-3">
               {
                 section[1].map((item) => (
-                  <li>
+                  <li class={`py-1 pl-4 border-l-2 border-l-blue-100 ${("/" + item.slug) == Astro.url.pathname ? "bg-blue-200 border-l-blue-600" : ""}`}>
                     <a href={"/" + item.slug} class="text-slate-900 hover:text-slate-800">
                       {item.data.title}
                     </a>

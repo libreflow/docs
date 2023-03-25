@@ -1,9 +1,10 @@
 ---
 import Header from '../components/Header.astro';
 import Navigation from '../components/Navigation.astro';
-import ContentNavigation from '../components/ContentNavigation.astro';
+import ContentNavigation from '../components/ContentNavigation.svelte';
 import ContentFooter from '../components/ContentFooter.astro';
 import type { MarkdownHeading } from 'astro';
+import { getCollection } from 'astro:content';
 
 export interface Props {
 	content: {
@@ -16,6 +17,13 @@ export interface Props {
 
 
 const { content, headings } = Astro.props;
+
+const docs = await getCollection("docs")
+for (let i = 0; i < docs.length; i++) {
+	const article = docs[i];
+
+	article.slug = article.slug.replace(/[0-9\-]+/g, "");
+}
 ---
 
 <!DOCTYPE html>
@@ -29,8 +37,8 @@ const { content, headings } = Astro.props;
 <body>
   <Header />
 
-  <main class="relative flex justify-center mx-auto max-w-8xl sm:px-2 lg:px-8 xl:px-12 bg-primary">
-    <Navigation />
+  <main class="pb-8 relative flex justify-center mx-auto max-w-8xl sm:px-2 lg:px-8 xl:px-12 bg-primary">
+    <Navigation docs={docs} />
 
     <div class="flex-auto min-w-0 px-4 py-10 lg:max-w-none lg:pr-0 lg:pl-8 xl:px-16">
       <article class="max-w-[1200px] mx-auto w-full">
@@ -55,7 +63,7 @@ const { content, headings } = Astro.props;
         <ContentFooter />
       </article>
 
-      <ContentNavigation />
+      <ContentNavigation docs={docs} url={Astro.url.pathname.substring(1)} />
     </div>
   </main>
 </body>
@@ -113,5 +121,9 @@ const { content, headings } = Astro.props;
 
 	article code {
 		@apply rounded-lg text-base bg-[rgb(240,240,240)] px-2 py-1;
+	}
+
+	article .math {
+		@apply overflow-x-scroll;
 	}
 </style>

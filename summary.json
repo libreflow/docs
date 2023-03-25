@@ -1,0 +1,20 @@
+{
+	"LibreFlow": "",
+	"Foreword": "",
+	"Introduction": "",
+	"Getting Started": {
+		"Installation": ""
+	},
+	"Workspaces": {
+		"Introduction": "index",
+		"Creating a new Workspace": ""
+	},
+	"Boards": {
+		"Introduction": "index",
+		"Creating Boards": ""
+	},
+	"Kanban Lists": {
+		"Introduction": "index",
+		"Managing a Kanban List": ""
+	}
+}
