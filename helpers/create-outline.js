@@ -1,4 +1,9 @@
 import * as fs from "fs";
+import * as path from "path"
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 if(process.argv.length < 3) {
 	console.log("Please provide the filepath of the summary.json file");
@@ -12,7 +17,7 @@ try {
 
 	const outline = JSON.parse(jsonData);
 
-	createFoldersAndFiles(outline, './src/content/docs');
+	createFoldersAndFiles(outline, path.join(__dirname, '../src/content/docs'));
 } catch(err) {
 	console.log("Error reading or parsing the summary.json file: " + err.message);
 	process.exit(1);

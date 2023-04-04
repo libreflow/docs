@@ -3,7 +3,8 @@
 	"Foreword": "",
 	"Introduction": "",
 	"Getting Started": {
-		"Installation": ""
+		"Installation": "",
+		"Headless Server Installation": ""
 	},
 	"Workspaces": {
 		"Introduction": "index",

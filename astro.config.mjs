@@ -3,7 +3,6 @@ import tailwind from "@astrojs/tailwind";
 import svelte from "@astrojs/svelte";
 import rehypeMathjax from "rehype-mathjax";
 import remarkMath from 'remark-math';
-import gyroLanguageGrammar from "./src/gyro.tmLanguage";
 import mdx from "@astrojs/mdx";
 
 import image from "@astrojs/image";
@@ -19,13 +18,7 @@ export default defineConfig({
   trailingSlash: "never",
   markdown: {
     shikiConfig: {
-      theme: "min-light",
-      langs: [{
-        id: "gyro",
-        scopeName: 'source.gyro',
-        grammar: gyroLanguageGrammar,
-        aliases: ["gyro", "gy"]
-      }]
+      theme: "min-light"
     }
   }
 });

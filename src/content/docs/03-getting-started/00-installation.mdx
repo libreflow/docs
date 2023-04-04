@@ -3,3 +3,67 @@ title: Installation
 section: Getting Started
 date: 2023-03-25T08:11:20.678Z
 ---
+
+## Prerequisites
+
+- Docker and Docker Compose installed on your system.
+
+## Installation
+
+1. Clone the LibreFlow repository from GitHub:
+
+```bash
+git clone https://github.com/libreflow/libreflow.git
+```
+
+2. Navigate to the root directory of the project:
+
+```bash
+cd libreflow
+```
+
+3. Build the Docker images:
+
+```
+Copy code
+docker-compose build
+```
+
+Building the Docker images may take a few minutes, so sit back and relax. You can grab a cup of coffee or tea while you wait.
+
+4. Start the containers:
+
+```
+docker-compose up -d
+```
+
+Once the images are built, you can start the containers with a single command.
+This will spin up the LibreFlow application and its dependencies in Docker
+containers. You'll see the application logs in your terminal as the containers
+start up.
+
+1. Wait for a few seconds until the containers are up and running. After
+   starting the containers, it may take a few seconds for LibreFlow to fully start
+   up. You can monitor the logs to see when the application is ready.
+
+2. Access LibreFlow by opening your web browser and entering
+   `http://localhost:3000` in the address bar. Once LibreFlow is up and running,
+   you can access it by opening your web browser and entering the URL
+   `http://localhost:3000`. This will take you to the LibreFlow login screen.
+
+3. You should now see the LibreFlow login screen. If this is your first time
+   accessing LibreFlow, you need to create an account by clicking on the
+   "Sign Up" button and following the instructions to create your
+   account.
+
+4. Once you've created your account, you're ready to start using
+   LibreFlow! You can create new projects, add tasks and milestones, and assign
+   team members to work on them.
+
+## Notes
+
+- By default, LibreFlow uses port 3000. If you want to use a different port, you can change it in the `docker-compose.yml` file.
+- If you make any changes to the code, you need to rebuild the Docker images by running `docker-compose build` again.
+- To stop the containers, run `docker-compose down` from the project directory.
+
+That's it! You have successfully installed LibreFlow using Docker. Happy project management!
